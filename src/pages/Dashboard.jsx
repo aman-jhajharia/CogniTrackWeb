@@ -1,17 +1,12 @@
 import { auth } from "../services/firebase";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { signOut } from "firebase/auth";
 
 export default function Dashboard() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!auth.currentUser) {
-      navigate("/");
-    }
-  }, []);
-
   const user = auth.currentUser;
+
+  const handleLogout = async () => {
+    await signOut(auth);
+  };
 
   return (
     <div style={{ padding: "40px" }}>
@@ -21,6 +16,11 @@ export default function Dashboard() {
         <>
           <p>Name: {user.displayName}</p>
           <p>Email: {user.email}</p>
+
+          <br />
+          <button onClick={handleLogout}>
+            Logout
+          </button>
         </>
       )}
     </div>
