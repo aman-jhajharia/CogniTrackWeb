@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import Navbar from "./components/Navbar";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -26,8 +25,6 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      {user && <Navbar />}
-
       <Routes>
         {!user ? (
           <Route path="*" element={<Login />} />

@@ -18,7 +18,7 @@ export default function Navbar() {
         borderBottom: "1px solid #ddd",
       }}
     >
-      <h3>CogniTrack</h3>
+      <h3>CogniTracK</h3>
 
       {user && (
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>

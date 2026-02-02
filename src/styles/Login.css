@@ -1,0 +1,67 @@
+.container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.CogniTrack_logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+.CogniTrack_title {
+    font-size: 36px;
+}
+h1,
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    font-size: 16px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+/* Google Button */
+.google-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #f1f3f4;
+    color: #444;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    transition: box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.google-btn img {
+    width: 22px;
+    height: 22px;
+}
+
+.google-btn:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    background-color: #e8eaed;
+}
+
+.google-btn:active {
+    transform: scale(0.98);
+}

@@ -1,22 +1,31 @@
 import { auth } from "../services/firebase";
 import { signOut } from "firebase/auth";
+import Navbar from "../components/Navbar";
 
 export default function Dashboard() {
   const user = auth.currentUser;
 
+  const handleLogout = async () => {
+    await signOut(auth);
+  };
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h2>Dashboard</h2>
+    <>
+      <Navbar />
 
-      {user && (
-        <>
-          <p>Name: {user.displayName}</p>
-          <p>Email: {user.email}</p>
+      <div style={{ padding: "40px" }}>
+        <h2>Dashboard</h2>
 
-          <br />
-        </>
-      )}
-    </div>
+        {user && (
+          <>
+            <p>Name: {user.displayName}</p>
+            <p>Email: {user.email}</p>
+          </>
+        )}
+
+        <br />
+        <button onClick={handleLogout}>Logout</button>
+      </div>
+    </>
   );
 }

@@ -1,6 +1,8 @@
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../services/firebase";
 import { saveUserProfile } from "../services/userService";
+import LoginForm from "../components/LoginForm";
+import "../styles/LoginPage.css";
 
 export default function Login() {
   const handleGoogleLogin = async () => {
@@ -14,13 +16,12 @@ export default function Login() {
   };
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h1>CogniTrack</h1>
-      <p>Sign in to continue</p>
+    <div className="login-page">
+      <h1 className="login-heading">
+        CogniTrack: An Tracker for Optimized Future
+      </h1>
 
-      <button onClick={handleGoogleLogin}>
-        Sign in with Google
-      </button>
+      <LoginForm onGoogleLogin={handleGoogleLogin} />
     </div>
   );
 }
