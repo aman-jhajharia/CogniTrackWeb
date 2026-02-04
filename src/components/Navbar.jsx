@@ -1,5 +1,6 @@
 import { auth } from "../services/firebase";
 import { signOut } from "firebase/auth";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const user = auth.currentUser;
@@ -22,6 +23,9 @@ export default function Navbar() {
 
       {user && (
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+    <NavLink to="/time-tracker" style={{ marginRight: 12, textDecoration: "none" }}>
+      Time Tracker
+    </NavLink>
           <span>{user.displayName}</span>
           <button onClick={handleLogout}>Logout</button>
         </div>

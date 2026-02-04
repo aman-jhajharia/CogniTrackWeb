@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./services/firebase";
 import { useEffect, useState } from "react";
+import TimeTracker from "./pages/TimeTracker";
+
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -32,7 +34,14 @@ export default function App() {
           <>
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            
+            <Route
+  path="/time-tracker"
+  element={user ? <TimeTracker /> : <Navigate to="/" />}
+/>
+
           </>
+          
         )}
       </Routes>
     </BrowserRouter>
