@@ -1,7 +1,7 @@
-import { useState } from "react";
-
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { TrackerContext } from "../context/TrackerContext";
+import { saveWeekData, loadWeekData } from "../services/firestore";
+import { getWeekKey } from "../utils/date";
 
 const HOURS = Array.from({ length: 24 }, (_, i) => `${i}-${i + 1}`);
 
@@ -26,14 +26,32 @@ function getWeekDates(startDate) {
 
 export default function TimeTracker() {
   const [weekStart, setWeekStart] = useState(new Date());
-  const { weekData: data, setWeekData: setData } = useContext(TrackerContext);
+  const { weekData, setWeekData } = useContext(TrackerContext);
 
-
+  const weekKey = getWeekKey(weekStart);
   const weekDates = getWeekDates(weekStart);
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
+  // 🔄 Load data when week changes
+  useEffect(() => {
+    async function fetchData() {
+      const data = await loadWeekData(weekKey);
+      setWeekData(data);
+    }
+    fetchData();
+  }, [weekKey, setWeekData]);
+
+  // 💾 Save automatically on change (debounced)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      saveWeekData(weekKey, weekData);
+    }, 600);
+
+    return () => clearTimeout(timeout);
+  }, [weekData, weekKey]);
+
   const handleChange = (day, hour, value) => {
-    setData((prev) => ({
+    setWeekData((prev) => ({
       ...prev,
       [day]: {
         ...(prev[day] || {}),
@@ -73,9 +91,8 @@ export default function TimeTracker() {
             {HOURS.map((hour) => (
               <tr key={hour}>
                 <td style={cell}>{hour}</td>
-
                 {days.map((day) => {
-                  const value = data[day]?.[hour] || "";
+                  const value = weekData[day]?.[hour] || "";
                   return (
                     <td
                       key={day}
