@@ -27,7 +27,7 @@ export default function Analytics() {
   return (
     <div className="analytics-page">
       <div className="analytics-header">
-        <h1 className="analytics-title">Analytics Dashboard</h1>
+        <h1 className="analytics-title">Analytics</h1>
         <p className="analytics-subtitle">Deep dive into your time allocation and performance trends.</p>
       </div>
 
@@ -72,39 +72,66 @@ export default function Analytics() {
 
       <h3 className="analytics-section-title">Smart Insights</h3>
       <ul className="insights-list">
-        {studyHours < 10 ? (
+        {studyHours === 0 ? (
           <li className="insight-item">
             <div className="insight-icon insight-warn"><AlertCircle size={20} /></div>
-            <span><strong>Learning Deficit:</strong> You've mapped less than 10 hours for learning or studying this week. Try block-scheduling focus sessions.</span>
+            <span><strong>No Learning Logged:</strong> You haven't tracked any learning or study time yet this week. Consider setting aside even 30 minutes a day to build a habit.</span>
+          </li>
+        ) : studyHours < 5 ? (
+          <li className="insight-item">
+            <div className="insight-icon insight-info"><BookOpen size={20} /></div>
+            <span><strong>Learning Starter:</strong> You've mapped {studyHours} hours for learning this week. Try block-scheduling focus sessions to increase this.</span>
           </li>
         ) : (
           <li className="insight-item">
             <div className="insight-icon insight-good"><CheckCircle2 size={20} /></div>
-            <span><strong>Great Focus:</strong> You've logged excellent study/learning time this week!</span>
+            <span><strong>Great Focus:</strong> You've logged a solid {studyHours} hours of study/learning time this week!</span>
           </li>
         )}
 
-        {restHours < 42 ? (
+        {totalHours > 0 && restHours === 0 ? (
           <li className="insight-item">
             <div className="insight-icon insight-warn"><AlertCircle size={20} /></div>
-            <span><strong>Sleep Debt Warning:</strong> You're averaging less than 6 hours of rest per night. Prioritize recovery!</span>
+            <span><strong>Missing Rest Data:</strong> You've tracked {totalHours} total hours but haven't logged any rest or sleep. Ensure you are logging downtime for accurate metrics.</span>
           </li>
-        ) : (
+        ) : restHours > 0 && restHours < 42 ? (
+          <li className="insight-item">
+            <div className="insight-icon insight-warn"><AlertCircle size={20} /></div>
+            <span><strong>Sleep Debt Warning:</strong> You're averaging less than 6 hours per night (total: {restHours}h). Prioritize recovery!</span>
+          </li>
+        ) : restHours >= 42 && restHours <= 63 ? (
           <li className="insight-item">
             <div className="insight-icon insight-good"><CheckCircle2 size={20} /></div>
-            <span><strong>Well Rested:</strong> Excellent sleep hygiene. You're maintaining a healthy recovery cycle.</span>
+            <span><strong>Well Rested:</strong> Excellent sleep hygiene ({restHours}h total). You're maintaining a healthy recovery cycle.</span>
           </li>
-        )}
-
-        {healthHours >= 5 ? (
+        ) : restHours > 63 ? (
           <li className="insight-item">
-            <div className="insight-icon insight-good"><Zap size={20} /></div>
-            <span><strong>Active Lifestyle:</strong> Fantastic exercise consistency! You've successfully integrated health into your routine.</span>
+            <div className="insight-icon insight-info"><Coffee size={20} /></div>
+            <span><strong>High Rest Time:</strong> You've logged {restHours} hours of rest. Make sure this aligns with your goals and energy needs.</span>
           </li>
-        ) : (
+        ) : null}
+
+        {healthHours === 0 ? (
+          <li className="insight-item">
+            <div className="insight-icon insight-warn"><Activity size={20} /></div>
+            <span><strong>No Activity Logged:</strong> Try to slot in a few active health hours this week to hit optimal physical performance.</span>
+          </li>
+        ) : healthHours < 3 ? (
           <li className="insight-item">
             <div className="insight-icon insight-info"><Activity size={20} /></div>
-            <span><strong>Movement Recommendation:</strong> Try to slot in a few more active health hours to hit optimal performance.</span>
+            <span><strong>Movement Recommendation:</strong> You've logged {healthHours} hours of exercise. Aim for at least 3-5 hours a week for optimal well-being.</span>
+          </li>
+        ) : (
+          <li className="insight-item">
+            <div className="insight-icon insight-good"><Zap size={20} /></div>
+            <span><strong>Active Lifestyle:</strong> Fantastic exercise consistency ({healthHours}h)! You've successfully integrated health into your routine.</span>
+          </li>
+        )}
+
+        {workHours > 50 && (
+          <li className="insight-item">
+            <div className="insight-icon insight-warn"><AlertCircle size={20} /></div>
+            <span><strong>Burnout Risk:</strong> You've logged {workHours} hours of work/projects. Ensure you are balancing this with adequate rest and personal time to avoid burnout.</span>
           </li>
         )}
       </ul>
