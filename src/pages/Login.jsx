@@ -34,10 +34,10 @@ export default function Login() {
         <div className="login-right">
           <div className="login-right-content">
             <h4 className="login-right-title">
-             T̷r̷a̷c̷k̷i̷n̷g̷  Taking Control of Your Life!
+              <s style={{ opacity: 0.7, marginRight: '4px' }}>Tracking</s> Taking Control of Your Life!
             </h4>
             <p className="login-right-text">
-              Live a healthier, more organized life by effortlessly.
+              Live a healthier, more organized life effortlessly.
             </p>
           </div>
         </div>

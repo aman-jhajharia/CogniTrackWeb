@@ -1,0 +1,119 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-decoration: none;
+}
+
+.nav-brand-icon {
+    width: 36px;
+    height: 36px;
+    background-color: #6a1b9a;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #6a1b9a;
+}
+
+.nav-link.active {
+    color: #6a1b9a;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.nav-profile-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.nav-profile-plan {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.nav-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f3e8ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.nav-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #6a1b9a;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.nav-logout-btn:hover {
+    background-color: #591682;
+}
+
+.nav-logout-btn:active {
+    transform: scale(0.98);
+}
