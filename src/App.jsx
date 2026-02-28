@@ -9,6 +9,7 @@ import TimeTracker from "./pages/TimeTracker";
 import Analytics from "./pages/Analytics";
 import ExpenseTracker from "./pages/ExpenseTracker";
 import Navbar from "./components/Navbar";
+import PersonalChatbot from "./components/PersonalChatbot";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -29,7 +30,12 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      {user && <Navbar />}
+      {user && (
+        <>
+          <Navbar />
+          <PersonalChatbot />
+        </>
+      )}
 
       <Routes>
         {!user ? (
