@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import TimeTracker from "./pages/TimeTracker";
 import Analytics from "./pages/Analytics";
+import ExpenseTracker from "./pages/ExpenseTracker";
 import Navbar from "./components/Navbar";
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/time-tracker" element={<TimeTracker />} />
             <Route path="/analytics" element={<Analytics />} />
+            <Route path="/expense-tracker" element={<ExpenseTracker />} />
             <Route path="*" element={<Navigate to="/" />} />
           </>
         )}
